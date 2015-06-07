@@ -1,0 +1,11 @@
+temp <- tempfile()
+fileUrl <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
+download.file(fileUrl, temp, method="curl")
+data_txt <- unzip(temp)
+unlink(temp)
+dataset <- read.table(data_txt, header=T, sep=';', na.strings="?", nrows=2075259, check.names=F, stringsAsFactors=F, comment.char="", quote='\"')
+dataset$Date <- as.Date(dataset$Date, format="%d/%m/%Y")
+dataToUse <- subset(dataset, subset=(Date >= "2007-02-01" & Date <= "2007-02-02"))
+rm(dataset)
+datetime <- paste(as.Date(dataToUse$Date), dataToUse$Time)
+dataToUse$Datetime <- as.POSIXct(datetime)
