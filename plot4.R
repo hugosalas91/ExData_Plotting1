@@ -16,5 +16,5 @@ with(dataToUse, {
        ylab="Global Active Power", xlab="datetime")
 })
 
-dev.copy(png, file="plot2.png", width=480, height=480)
+dev.copy(png, file="plot4.png", width=480, height=480)
 dev.off()
